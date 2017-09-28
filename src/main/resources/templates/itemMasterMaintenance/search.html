@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Item Search</title>
+</head>
+<body>
+	<h1>製品マスタ管理</h1>
+	<form th:action="@{/itemMasterMaintenance/search}" method="post">
+		<input type="submit" name="search" value="検索" />
+	</form>
+	<hr />
+	<table>
+		<tr>
+			<th>ItemID</th>
+			<th>製品名</th>
+			<th colspan="3">プロパティ</th>
+			<th colspan="2">編集</th>
+		</tr>
+		<tr th:each="item: ${items}">
+			<td th:text="${item.itemId}">1</td>
+			<td th:text="${item.itemName}">ジクロロベンゼン</td>
+			<td th:text="${item.itemProperty1}">プロパティ１</td>
+			<td th:text="${item.itemProperty2}">プロパティ２</td>
+			<td th:text="${item.itemProperty3}">プロパティ３</td>
+			<td>
+				<form th:action="@{/itemMasterMaintenance/edit}" method="post">
+					<input type="submit" name="goEdit" value="編集" /> <input
+						type="hidden" name="itemId" th:value="${item.itemId}" />
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/itemMasterMaintenance/delete}" method="post">
+					<input type="submit" value="Delete" /> <input type="hidden"
+						name="itemId" th:value="${item.itemId}" />
+				</form>
+			</td>
+		</tr>
+	</table>
+	<form th:action="@{/itemMasterMaintenance/edit}" method="post">
+		<input type="submit" name="goRegister" value="登録"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Item Edit</title>
+</head>
+<body>
+  <h1>製品マスタ管理</h1>
+  <form th:action="@{/itemMasterMaintenance/edit}"
+    th:object="${itemMasterMaintenanceForm}" class="form-horizontal"
+    method="post">
+    <div th:if="*{itemId != null}">
+      ItemId:<label for="itemId" th:text="*{itemId}">10</label>
+    </div>
+
+    <div
+      th:classappend="${#fields.hasErrors('itemName')}? 'has-error has-feedback'">
+      <label for="itemName">製品名</label> <input type="text" id="itemName"
+        name="itemName" th:field="*{itemName}" class="form-control"
+        value="ジクロロベンゼン" /> <span
+        th:if="${#fields.hasErrors('itemName')}" th:errors="{itemName}">error!</span>
+    </div>
+    <div
+      th:classappend="${#fields.hasErrors('itemProperty1')}? 'has-error has-feedback'">
+      <label for="itemProperty1">プロパティ１</label> <input type="text"
+        id="itemProperty1" name="itemProperty1"
+        th:field="*{itemProperty1}" value="プロパティ１画面" /> <span
+        th:if="${#fields.hasErrors('itemProperty1')}"
+        th:errors="*{itemProperty1}">error!</span>
+
+    </div>
+    <div
+      th:classappend="${#fields.hasErrors('itemProperty2')}? 'has-error has-feedback'">
+      <label for="itemProperty2">プロパティ2</label> <input type="text"
+        id="itemProperty2" name="itemProperty2"
+        th:field="*{itemProperty2}" value="プロパティ2画面" /> <span
+        th:if="${#fields.hasErrors('itemProperty2')}"
+        th:errors="*{itemProperty2}">error!</span>
+    </div>
+    <div
+      th:classappend="${#fields.hasErrors('itemProperty3')}? 'has-error has-feedback'">
+      <label for="itemProperty3">プロパティ3</label> <input type="text"
+        id="itemProperty3" name="itemProperty3"
+        th:field="*{itemProperty3}" value="プロパティ3画面" /> <span
+        th:if="${#fields.hasErrors('itemProperty3')}"
+        th:errors="*{itemProperty3}">error!</span>
+    </div>
+    <div>
+      <input type="submit" name="goToSearch" value="戻る" /> <input
+        type="hidden" name="itemId" th:value="*{itemId}" /> <input
+        type="submit" name="edit" value="更新" th:if="*{itemId != null}" />
+      <input type="submit" name="register" value="登録"
+        th:if="*{itemId == null}" />
+    </div>
+  </form>
+</body>
+</html>
