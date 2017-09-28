@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Item Edit</title>
+</head>
+<body>
+  <div class="contents">
+    <div class="title">
+      <h1>OEL Report Manager (ORM)</h1>
+      <form th:action="@{/itemMasterMaintenance/edit}"
+        th:object="${itemMasterMaintenanceForm}" class="form-horizontal"
+        method="post">
+
+        <input type="submit" name="goToSearch" value="戻る" /> <input
+          type="submit" name="clear" value="クリア" />
+        <hr />
+
+        <div class="message">保存が完了しました。</div>
+        <div class="errorMessage">保存が完了しました。</div>
+        <div class="body">
+
+          <div class="section" id="basicSection">
+            <div class="sectionHeader">
+              基本
+              <button>edit</button>
+              <button>update</button>
+            </div>
+            <div
+              th:classappend="${#fields.hasErrors('itemName')}? 'has-error has-feedback'">
+              <label for="itemName">製品名</label> <input type="text"
+                id="itemName" name="itemName" th:field="*{itemName}"
+                class="form-control" value="イミダフェナシン" /> <label
+                for="itemName" th:field="*{itemName}">イミダフェナシン</label> <span
+                th:if="${#fields.hasErrors('itemName')}"
+                th:errors="{itemName}">error!</span>
+            </div>
+
+            <div
+              th:classappend="${#fields.hasErrors('oelTwa')}? 'has-error has-feedback'">
+              <label for="oelTwa">OEL-TWA</label> <input type="text"
+                id="oelTwa" name="oelTwa" th:field="*{oelTwa}"
+                class="form-control" value="3.21 micrograms/m3" /> <label
+                for="oelTwa" th:field="*{oelTwa}">3.21
+                micrograms/m3</label> <span
+                th:if="${#fields.hasErrors('oelTwa')}"
+                th:errors="{oelTwa}">error!</span>
+            </div>
+
+            <div
+              th:classappend="${#fields.hasErrors('category')}? 'has-error has-feedback'">
+              <label for="category">Category</label> <input type="text"
+                id="category" name="category" th:field="*{category}"
+                class="form-control" value="3.21 micrograms/m3" /> <label
+                for="category" th:field="*{category}">Catetgory
+                5</label> <span th:if="${#fields.hasErrors('category')}"
+                th:errors="{category}">error!</span>
+            </div>
+
+            <div class="propertyHeader">OEL数式</div>
+            <div>アップロード用の部品をここに配置</div>
+          </div>
+
+
+          <div class="section" id="summarySection">
+            <div class="sectionHeader">
+              概説
+              <button>Edit</button>
+              <button>Update</button>
+            </div>
+            <div
+              th:classappend="${#fields.hasErrors('itemName')}? 'has-error has-feedback'">
+              <textarea id="itemSummary" name="itemSummary"
+                th:field="*{itemSummary}" class="form-control">
+                OEL以下でも薬効に関連する症状が発言する可能性がある。
+            また、人手の代表的な副作用の口渇は、ラットで評価できているかわからない。
+            薬効に関連する副作用を許容するかどうかでOEL値が異なる</textarea>
+              <span th:if="${#fields.hasErrors('itemSummary')}"
+                th:errors="{itemSummary}">error!</span>
+            </div>
+          </div>
+
+
+          <div class="section" id="hazardTestSection">
+            <div class="sectionHeader">
+              毒性試験の結果
+              <button>Edit</button>
+              <button>Update</button>
+            </div>
+            <table class="propertyTable">
+              <tr>
+                <td><label for="hazardLoael">LOAEL</label></td>
+                <td><input type="text" id="hazardLoael"
+                  name="hazardLoael" th:field="*{hazardLoael}"
+                  class="form-control" value="500 μg/kg/day" /></td>
+              </tr>
+              <tr>
+                <td><label for="hazardTermsUf">試験期間による不確実係数</label></td>
+                <td><input type="text" id="hazardTermsUf"
+                  name="hazardTermsUf" th:field="*{hazardTermsUf}"
+                  class="form-control" value="1(12ヶ月)" /></td>
+              </tr>
+
+              <tr>
+                <td><label for="hazardTermsUf">動物種による不確実係数</label></td>
+                <td><input type="text" id="hazardAnimalUf"
+                  name="hazardAnimalUf" th:field="*{hazardAnimalUf}"
+                  class="form-control" value="5(イヌ)" /></td>
+              </tr>
+            </table>
+          </div>
+
+
+          <div class="section" id="pharmacokineticsTestSection">
+            <div class="sectionHeader">
+              薬物動態
+              <button>Edit</button>
+              <button>Update</button>
+            </div>
+            <table class="propertyTable">
+              <tr>
+                <td><label for="pharmacokineticsLoael">LOAEL</label></td>
+                <td><input type="text" id="pharmacokineticsLoael"
+                  name="pharmacokineticsLoael" th:field="*{pharmacokineticsLoael}"
+                  class="form-control" value="500 μg/kg/day" /></td>
+              </tr>
+              <tr>
+                <td><label for="pharmacokineticsTermsUf">試験期間による不確実係数</label></td>
+                <td><input type="text" id="pharmacokineticsTermsUf"
+                  name="pharmacokineticsTermsUf" th:field="*{pharmacokineticsTermsUf}"
+                  class="form-control" value="1(12ヶ月)" /></td>
+              </tr>
+
+              <tr>
+                <td><label for="pharmacokineticsAnimalUf">動物種による不確実係数</label></td>
+                <td><input type="text" id="pharmacokineticsAnimalUf"
+                  name="pharmacokineticsAnimalUf" th:field="*{pharmacokineticsAnimalUf}"
+                  class="form-control" value="5(イヌ)" /></td>
+              </tr>
+            </table>
+          </div>
+
+
+          <div class="section" id="itemRemarks">
+            <div class="sectionHeader">
+              各種備考
+              <button>Edit</button>
+              <button>Update</button>
+            </div>
+            <div
+              th:classappend="${#fields.hasErrors('itemRemarks')}? 'has-error has-feedback'">
+              <textarea id="itemRemarks" name="itemRemarks"
+                th:field="*{itemRemarks}" class="form-control">
+                備考欄の記載内容いろいろ</textarea>
+              <span th:if="${#fields.hasErrors('itemRemarks')}"
+                th:errors="{itemRemarks}">error!</span>
+            </div>
+          </div>
+
+          <div class="section" id="notesSummary">
+            <div class="sectionHeader">
+              注意書き
+              <button>Edit</button>
+              <button>Update</button>
+            </div>
+            <div
+              th:classappend="${#fields.hasErrors('notesSummary')}? 'has-error has-feedback'">
+              <textarea id="notesSummary" name="notesSummary"
+                th:field="*{notesSummary}" class="form-control">
+                備考欄の記載内容いろいろ</textarea>
+              <span th:if="${#fields.hasErrors('notesSummary')}"
+                th:errors="{notesSummary}">error!</span>
+            </div>
+          </div>
+
+
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

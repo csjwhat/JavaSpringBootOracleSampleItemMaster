@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: hajiboot-thymeleaf
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: ise3425
+Implementation-Vendor-Id: jp.co.isegroup
+Build-Jdk: 1.8.0_74
+Implementation-URL: http://projects.spring.io/spring-boot/Sample/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
