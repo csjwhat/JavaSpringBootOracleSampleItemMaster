@@ -1,0 +1,2 @@
+このプロジェクトはSpringBootの練習用に作ったItemMasterです。
+Oracleで動かすことを前提に作っています。
